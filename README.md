@@ -41,30 +41,30 @@ npm install @pod-point/react-native-maps --save
  
  ## Android Setup Guide
  
-  1. Open up your React Native project in Android Studio, this is the `android` directory in your React Native project.
-  2. Expand *Gradle Scripts* from within the project tree and open `settings.gradle`. Replace the line in the script
-  which states `include ':app'` with `include ':app', ':pptmapview'` (or append `':pptmapview'` to the end of the
-  include statement if you're already including other modules).
-  3. Add the following line to the end of `settings.gradle`:
+ 1. Open up your React Native project in Android Studio, this is the `android` directory in your React Native project.
+ 2. Expand *Gradle Scripts* from within the project tree and open `settings.gradle`. Replace the line in the script
+ which states `include ':app'` with `include ':app', ':pptmapview'` (or append `':pptmapview'` to the end of the
+ include statement if you're already including other modules).
+ 3. Add the following line to the end of `settings.gradle`:
+ ```
+ project(':pptmapview').projectDir = new File(rootProject.projectDir, '../node_modules/@pod-point/react-native-maps/android/library')
+ ```
+ 4. Open up your `app` module `build.gradle` file and add the following line to the end of your dependancies section:
+ ```
+ compile project(path: ':pptmapview')
   ```
-  project(':pptmapview').projectDir = new File(rootProject.projectDir, '../node_modules/@pod-point/react-native-maps/android/library')
-  ```
-  4. Open up your `app` module `build.gradle` file and add the following line to the end of your dependancies section:
-  ```
-  compile project(path: ':pptmapview')
-  ```
-  5. You should now be prompted to run a Gradle project sync so press *Sync Now* in the gold toolbar that should be
-  visible.
-  6. Open your projects `MainActivity` class and import the following package:
-  ```java
-  import com.podpoint.pptmapview.PPTGoogleMapPackage;
-  ```
-  7. Find the line in your main activity class which has the following on it - `.addPackage(new MainReactPackage())`,
-  add the following line below:
-  ```java
-  .addPackage(new PPTGoogleMapPackage())
-  ```
-  8. Hit `Ctrl+R` and make sure the app runs!
+ 5. You should now be prompted to run a Gradle project sync so press *Sync Now* in the gold toolbar that should be
+ visible.
+ 6. Open your projects `MainActivity` class and import the following package:
+ ```java
+ import com.podpoint.pptmapview.PPTGoogleMapPackage;
+ ```
+ 7. Find the line in your main activity class which has the following on it - `.addPackage(new MainReactPackage())`,
+ add the following line below:
+ ```java
+ .addPackage(new PPTGoogleMapPackage())
+ ```
+ 8. Hit `Ctrl+R` and make sure the app runs!
 
 ## Creating a new Map
 
