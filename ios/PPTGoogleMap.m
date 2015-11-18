@@ -5,7 +5,25 @@
 #import "RCTLog.h"
 #import "RCTUtils.h"
 
-@implementation PPTGoogleMap
+@implementation PPTGoogleMap {
+    NSMutableDictionary *markerImages;
+    CLLocationManager *locationManager;
+    float zoom;
+}
+
+/**
+ * Init the google map view class.
+ *
+ * @return id
+ */
+- (id)init
+{
+    if (self = [super init]) {
+        markerImages = [[NSMutableDictionary alloc] init];
+    }
+    
+    return self;
+}
 
 /**
  * Enables layout sub-views which are required to render a non-blank map.
@@ -82,20 +100,36 @@
         CLLocationDegrees latitude = ((NSNumber*)marker[@"latitude"]).doubleValue;
         CLLocationDegrees longitude = ((NSNumber*)marker[@"longitude"]).doubleValue;
         
-        CGFloat markerScale = ((NSNumber*)marker[@"icon"][@"scale"]).doubleValue;
-        NSString *markerPath = marker[@"icon"][@"uri"];
-        
-        UIImage *markerImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:markerPath]]];
-        UIImage *makerScaled = [UIImage imageWithCGImage:[markerImage CGImage]
-                                                   scale:(markerScale)
-                                             orientation:(markerImage.imageOrientation)];
-        
         GMSMarker* mapMarker = [GMSMarker markerWithPosition:CLLocationCoordinate2DMake(latitude, longitude)];
         
-        mapMarker.icon = makerScaled;
+        mapMarker.icon = [self getMarkerImage:marker];
         mapMarker.userData = publicId;
         mapMarker.map = self;
     }
+}
+
+/**
+ * Load the marker image or use one that's already been loaded.
+ *
+ * @return NSImage
+ */
+- (UIImage *)getMarkerImage:(NSDictionary *)marker
+{
+    NSString *markerPath = marker[@"icon"][@"uri"];
+    CGFloat markerScale = ((NSNumber*)marker[@"icon"][@"scale"]).doubleValue;
+    
+    if (!markerImages[markerPath]) {
+        UIImage *markerImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:markerPath]]];
+        
+        UIImage *markerScaled = [UIImage imageWithCGImage:[markerImage CGImage]
+                                                    scale:(markerScale)
+                                              orientation:(markerImage.imageOrientation)];
+        
+        [markerImages setObject:markerScaled forKey:markerPath];
+    }
+    
+    
+    return markerImages[markerPath];
 }
 
 /**

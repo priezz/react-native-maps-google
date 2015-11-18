@@ -6,10 +6,7 @@
 /**
  * Declarations of properties which are accasible via the JavaScript API.
  */
-@interface PPTGoogleMap: GMSMapView <CLLocationManagerDelegate> {
-    CLLocationManager *locationManager;
-    float zoom;
-}
+@interface PPTGoogleMap: GMSMapView <CLLocationManagerDelegate>
 
 @property (nonatomic, copy) NSDictionary *cameraPosition;
 @property (nonatomic) BOOL *showsUserLocation;
