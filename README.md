@@ -39,7 +39,7 @@ npm install @pod-point/react-native-maps --save
  into this build phase.
  12. Hit `Cmd+R` and make sure the app runs!
  
- ## Android Setup Guide
+## Android Setup Guide
  
  1. Open up your React Native project in Android Studio, this is the `android` directory in your React Native project.
  2. Expand *Gradle Scripts* from within the project tree and open `settings.gradle`. Replace the line in the script
