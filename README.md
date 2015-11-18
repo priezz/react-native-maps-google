@@ -64,7 +64,11 @@ npm install @pod-point/react-native-maps --save
  ```java
  .addPackage(new PPTGoogleMapPackage())
  ```
- 8. Hit `Ctrl+R` and make sure the app runs!
+ 8. Expand the `pptmapview` package in your project explorer and then expand the `manifests` directory. Open up the
+ `AndroidManifset.xml` and find the node with the key `com.google.android.geo.API_KEY`. Enter your Google API key
+ into the `android:value` property and save the file. This file will be kept out of source control so it is safe to
+ store the API key in here.
+ 9. Hit `Ctrl+R` and make sure the app runs!
 
 ## Creating a new Map
 
