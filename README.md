@@ -13,7 +13,7 @@ npm install @pod-point/react-native-maps --save
 
  1. Go get yourself a cup of coffee, this could take a while...
  2. Download version 1.10.4 of the Google Maps iOS SDK using this link (we're not going to use Cocoa Pods):
- ⋅⋅* https://www.gstatic.com/cpdc/8cb64655838d3eb7-GoogleMaps-1.10.4.tar.gz
+   * https://www.gstatic.com/cpdc/8cb64655838d3eb7-GoogleMaps-1.10.4.tar.gz
  3. Unpack the archive and copy the folder to the `node_modules` directory in your React Native projct.
  4. Open up your React Native project in XCode, this is the `.xcodeproj` file in the `ios` directory of your React
  Native project.
@@ -52,7 +52,7 @@ npm install @pod-point/react-native-maps --save
  4. Open up your `app` module `build.gradle` file and add the following line to the end of your dependancies section:
  ```
  compile project(path: ':pptmapview')
-  ```
+ ```
  5. You should now be prompted to run a Gradle project sync so press *Sync Now* in the gold toolbar that should be
  visible.
  6. Open your projects `MainActivity` class and import the following package:
@@ -71,7 +71,7 @@ npm install @pod-point/react-native-maps --save
 Require the UI component in the component you're wanting to display a map in:
 
 ```javascript
-var GoogleMap = require('../ui/GoogleMapView');
+var GoogleMap = require('@pod-point/react-native-maps');
 ```
 
 Include the following JSX in your render method:
