@@ -12,32 +12,29 @@ npm install @pod-point/react-native-maps --save
 ## iOS Setup Guide
 
  1. Go get yourself a cup of coffee, this could take a while...
- 2. Download version 1.10.4 of the Google Maps iOS SDK using this link (we're not going to use Cocoa Pods):
-   * https://www.gstatic.com/cpdc/8cb64655838d3eb7-GoogleMaps-1.10.4.tar.gz
- 3. Unpack the archive and copy the folder to the `node_modules` directory in your React Native projct.
- 4. Open up your React Native project in XCode, this is the `.xcodeproj` file in the `ios` directory of your React
+ 2. Open up your React Native project in XCode, this is the `.xcodeproj` file in the `ios` directory of your React
  Native project.
- 5. Click on the root of your project in XCode, then select your project's main target. Select *Build Settings* and then
+ 3. Click on the root of your project in XCode, then select your project's main target. Select *Build Settings* and then
  search for *Framework Search Paths*. Add `$(PROJECT_DIR)/../node_modules/8cb64655838d3eb7-GoogleMaps-1.10.4/Frameworks`
  to the framework search path list and make sure it is set to *recursive*.
- 6. Now search for *Header Search Paths*. Add `$(SRCROOT)/../node_modules/@pod-point/react-native-maps` to the header
+ 4. Now search for *Header Search Paths*. Add `$(SRCROOT)/../node_modules/@pod-point/react-native-maps` to the header
  search path list and make sure that it is also set to *recursive*.
- 7. Open `node_modules/@pod-point/react-native-maps/ios` in Finder and locate the `PPTMapView.xcodeproj` package.
+ 5. Open `node_modules/@pod-point/react-native-maps/ios` in Finder and locate the `PPTMapView.xcodeproj` package.
  Drag this file into the XCode project navigator. You can keep this in the `Libraries` group along with all the other
  React Native packages.
- 8. Expand the `PPTMapView.xcodeproj` tree and select `GoogleMapsApi.plist` - drag this into the group which contains
+ 6. Expand the `PPTMapView.xcodeproj` tree and select `GoogleMapsApi.plist` - drag this into the group which contains
  your `AppDelegate.h` and `AppDelegate.m` files; this group is usually named after your app. When prompted ensure that
  *Copy Items if Needed* is deselected when prompted, this will prevent this file from being committed into source 
  control. Open up the file and enter your Google API key into the value column of the row named `API Key`.
- 9. Open up `AppDelegate.m` and add `#import "PPTGoogleMapProvider.h"` at the top of the file. Then add 
+ 7. Open up `AppDelegate.m` and add `#import "PPTGoogleMapProvider.h"` at the top of the file. Then add 
  `[PPTGoogleMapProvider provideAPIKey];` somewhere in the `application` method, ideally at the top.
- 10. Select the `Google Maps SDK` group in `PPTMapView.xcodeproj`,  drag these packages  into the `Libraries` group of 
+ 8. Select the `Google Maps SDK` group in `PPTMapView.xcodeproj`,  drag these packages  into the `Libraries` group of 
  your React Native project and ensure that *Copy Items if Needed* is deselected when prompted.
- 11. Click on the root of your project in XCode, then select your project's main target. Click on *Build Phases* and
+ 9. Click on the root of your project in XCode, then select your project's main target. Click on *Build Phases* and
  double check that all the libraries and frameworks were automatically added to the *Link Binary With Libraries* phase.
  If they weren't, select all the packages in the Google Maps SDK group (apart from `GoogleMaps.bundle`) and drag them
  into this build phase.
- 12. Hit `Cmd+R` and make sure the app runs!
+ 10. Hit `Cmd+R` and make sure the app runs!
  
 ## Android Setup Guide
  
