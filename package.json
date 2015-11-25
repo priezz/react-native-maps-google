@@ -9,8 +9,8 @@
   "main": "PPTGoogleMap",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "cd ../../; curl \"https://www.gstatic.com/cpdc/8cb64655838d3eb7-GoogleMaps-1.10.4.tar.gz\" -o \"8cb64655838d3eb7-GoogleMaps-1.10.4.tar.gz\"; rm -rf 8cb64655838d3eb7-GoogleMaps-1.10.4; mkdir 8cb64655838d3eb7-GoogleMaps-1.10.4; tar -zxf 8cb64655838d3eb7-GoogleMaps-1.10.4.tar.gz -C 8cb64655838d3eb7-GoogleMaps-1.10.4; rm 8cb64655838d3eb7-GoogleMaps-1.10.4.tar.gz",
-    "preversion, version": "cd ../../; curl \"https://www.gstatic.com/cpdc/8cb64655838d3eb7-GoogleMaps-1.10.4.tar.gz\" -o \"8cb64655838d3eb7-GoogleMaps-1.10.4.tar.gz\"; rm -rf 8cb64655838d3eb7-GoogleMaps-1.10.4; mkdir 8cb64655838d3eb7-GoogleMaps-1.10.4; tar -zxf 8cb64655838d3eb7-GoogleMaps-1.10.4.tar.gz -C 8cb64655838d3eb7-GoogleMaps-1.10.4; rm 8cb64655838d3eb7-GoogleMaps-1.10.4.tar.gz"
+    "preinstall": "./sdk.sh",
+    "preversion, version": "./sdk.sh"
   },
   "keywords": [
     "google maps",
