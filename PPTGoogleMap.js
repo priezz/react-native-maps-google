@@ -10,7 +10,15 @@ class MapView extends React.Component {
      * @type {object}
      * @private
      */
-    _markerMeta: {};
+    _markerMeta;
+
+    /**
+     * An array of markers which are transformed ready for the bridge.
+     *
+     * @type {Array}
+     * @private
+     */
+    _markersForBridge;
 
     /**
      * Creates a new map view react component.
@@ -20,6 +28,7 @@ class MapView extends React.Component {
 
         this._onChange = this._onChange.bind(this);
         this._markerMeta = {};
+        this._markersForBridge = [];
     }
 
     /**
@@ -78,20 +87,18 @@ class MapView extends React.Component {
             return;
         }
 
+        this._markersForBridge = [];
+
         for (let marker of nextProps.markers) {
-            if (marker.id) {
-                marker.publicId = marker.id
-                delete marker.id;
-            }
+            this._markersForBridge.push({
+                publicId: marker.id,
+                latitude: marker.latitude,
+                longitude: marker.longitude,
+                icon: resolveAssetSource(marker.icon),
 
-            if (marker.icon) {
-                marker.icon = resolveAssetSource(marker.icon);
-            }
+            });
 
-            if (marker.meta) {
-                this._markerMeta[marker.publicId] = marker.meta;;
-                delete marker.meta
-            }
+            this._markerMeta[marker.id] = marker.meta || {};
         }
     }
 
@@ -102,8 +109,22 @@ class MapView extends React.Component {
      */
     render() {
         return (
-            <PPTGoogleMap onChange={this._onChange} {...this.props} />
-        );
+            <PPTGoogleMap style={this.props.style}
+        onChange={this._onChange}
+        cameraPosition={this.props.cameraPosition}
+        showsUserLocation={this.props.showsUserLocation}
+        scrollGestures={this.props.scrollGestures}
+        zoomGestures={this.props.zoomGestures}
+        tiltGestures={this.props.tiltGestures}
+        rotateGestures={this.props.rotateGestures}
+        consumesGesturesInView={this.props.consumesGesturesInView}
+        compassButton={this.props.compassButton}
+        myLocationButton={this.props.myLocationButton}
+        indoorPicker={this.props.indoorPicker}
+        allowScrollGesturesDuringRotateOrZoom={this.props.allowScrollGesturesDuringRotateOrZoom}
+        markers={this._markersForBridge}
+    />
+    );
     }
 }
 
@@ -231,9 +252,9 @@ MapView.propTypes = {
 };
 
 var PPTGoogleMap = requireNativeComponent('PPTGoogleMap', MapView, {
-  nativeOnly: {
-    onChange: true
-  }
+    nativeOnly: {
+        onChange: true
+    }
 });
 
 module.exports = MapView;
