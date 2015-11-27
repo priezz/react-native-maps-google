@@ -45,7 +45,7 @@ class MapView extends React.Component {
     }
 
     /**
-     * Handles marker events by swapping the react native map object out for the locally stored version.
+     * Handles marker events by swapping the react native marker object out for the locally stored version.
      *
      * @param event
      * @private
