@@ -1,16 +1,14 @@
-'use strict';
-
-var React = require('react-native'), { requireNativeComponent } = React;
-var resolveAssetSource = require('react-native/Libraries/Image/resolveAssetSource');
+import React, { requireNativeComponent } from 'react-native';
+import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
 
 class MapView extends React.Component {
     /**
-     * Any metadata that's associated with map markers.
+     * An array of markers which are transformed ready for the react native bridge.
      *
-     * @type {object}
+     * @type {Array}
      * @private
      */
-    _markerMeta: {};
+    _markersForBridge;
 
     /**
      * Creates a new map view react component.
@@ -19,7 +17,7 @@ class MapView extends React.Component {
         super();
 
         this._onChange = this._onChange.bind(this);
-        this._markerMeta = {};
+        this._markersForBridge = [];
     }
 
     /**
@@ -47,7 +45,7 @@ class MapView extends React.Component {
     }
 
     /**
-     * Handles marker events by appending marker metadata to the returned event object.
+     * Handles marker events by swapping the react native marker object out for the locally stored version.
      *
      * @param event
      * @private
@@ -57,19 +55,15 @@ class MapView extends React.Component {
             return;
         }
 
-        event.nativeEvent.data.id = event.nativeEvent.data.publicId;
-
-        delete event.nativeEvent.data.publicId;
-
-        if (this._markerMeta[event.nativeEvent.data.id]) {
-            event.nativeEvent.data.meta = this._markerMeta[event.nativeEvent.data.id];
-        }
+        event.nativeEvent.data = this.props.markers.filter((a) => {
+            return a.id === event.nativeEvent.data.publicId
+        })[0];
 
         this.props[event.nativeEvent.event](event.nativeEvent);
     }
 
     /**
-     * Store any map marker metadata in JS land so it doesn't need to travel across the react bridge.
+     * Prepare map marker data so that it can be sent across the react bridge.
      *
      * @param nextProps
      */
@@ -78,20 +72,15 @@ class MapView extends React.Component {
             return;
         }
 
+        this._markersForBridge = [];
+
         for (let marker of nextProps.markers) {
-            if (marker.id) {
-                marker.publicId = marker.id
-                delete marker.id;
-            }
-
-            if (marker.icon) {
-                marker.icon = resolveAssetSource(marker.icon);
-            }
-
-            if (marker.meta) {
-                this._markerMeta[marker.publicId] = marker.meta;;
-                delete marker.meta
-            }
+            this._markersForBridge.push({
+                publicId: marker.id,
+                latitude: marker.latitude,
+                longitude: marker.longitude,
+                icon: resolveAssetSource(marker.icon),
+            });
         }
     }
 
@@ -102,7 +91,21 @@ class MapView extends React.Component {
      */
     render() {
         return (
-            <PPTGoogleMap onChange={this._onChange} {...this.props} />
+            <PPTGoogleMap style={this.props.style}
+                          onChange={this._onChange}
+                          cameraPosition={this.props.cameraPosition}
+                          showsUserLocation={this.props.showsUserLocation}
+                          scrollGestures={this.props.scrollGestures}
+                          zoomGestures={this.props.zoomGestures}
+                          tiltGestures={this.props.tiltGestures}
+                          rotateGestures={this.props.rotateGestures}
+                          consumesGesturesInView={this.props.consumesGesturesInView}
+                          compassButton={this.props.compassButton}
+                          myLocationButton={this.props.myLocationButton}
+                          indoorPicker={this.props.indoorPicker}
+                          allowScrollGesturesDuringRotateOrZoom={this.props.allowScrollGesturesDuringRotateOrZoom}
+                          markers={this._markersForBridge}
+            />
         );
     }
 }
@@ -169,7 +172,6 @@ MapView.propTypes = {
      */
     markers: React.PropTypes.arrayOf(React.PropTypes.shape({
         id: React.PropTypes.string,
-        publicId: React.PropTypes.string,
         latitude: React.PropTypes.number.isRequired,
         longitude: React.PropTypes.number.isRequired,
         meta: React.PropTypes.object
@@ -230,10 +232,10 @@ MapView.propTypes = {
     didTapMyLocationButtonForMapView: React.PropTypes.func
 };
 
-var PPTGoogleMap = requireNativeComponent('PPTGoogleMap', MapView, {
+const PPTGoogleMap = requireNativeComponent('PPTGoogleMap', MapView, {
   nativeOnly: {
     onChange: true
   }
 });
 
-module.exports = MapView;
+export default MapView;
