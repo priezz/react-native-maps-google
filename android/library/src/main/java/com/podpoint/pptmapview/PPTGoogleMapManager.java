@@ -4,9 +4,10 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 
 import com.facebook.react.bridge.Arguments;
@@ -14,19 +15,24 @@ import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
-import com.facebook.react.uimanager.*;
+import com.facebook.react.uimanager.ReactProp;
+import com.facebook.react.uimanager.SimpleViewManager;
+import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
-import com.google.android.gms.maps.*;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,9 +45,8 @@ public class PPTGoogleMapManager extends SimpleViewManager<MapView> implements
         GoogleMap.OnMarkerDragListener,
         GoogleMap.OnMyLocationButtonClickListener
 {
-
     /**
-     * The name of the react module.
+     * The name of the react component.
      */
     public static final String REACT_CLASS = "PPTGoogleMap";
 
@@ -191,7 +196,7 @@ public class PPTGoogleMapManager extends SimpleViewManager<MapView> implements
     }
 
     /**
-     * Parses the marker data received from react and add the new markers to the map.
+     * Parses the marker data received from react and adds the new markers to the map.
      *
      * @param googleMap
      */
@@ -199,60 +204,89 @@ public class PPTGoogleMapManager extends SimpleViewManager<MapView> implements
         int count = markers.size();
 
         publicMarkerIds =  new HashMap<>();
-        Map<String, Bitmap> bitmaps = new HashMap<>();
 
         for (int i = 0; i < count; i++) {
-            ReadableMap marker = markers.getMap(i);
-            ReadableMap icon = marker.getMap("icon");
-            String uri = icon.getString("uri");
-            Bitmap markerIcon;
+            LatLng latLng;
+            String publicId;
 
-            if (bitmaps.containsKey(uri)) {
-                markerIcon = bitmaps.get(uri);
+            ReadableMap marker = markers.getMap(i);
+
+            if (marker.hasKey("latitude") && marker.hasKey("longitude") && marker.hasKey("publicId")) {
+                latLng = new LatLng(marker.getDouble("latitude"), marker.getDouble("longitude"));
+                publicId = marker.getString("publicId");
             } else {
-                markerIcon = loadMarkerIcon(icon);
-                bitmaps.put(uri, markerIcon);
+                // We've got nothing to work with here - ignore this marker!
+                continue;
             }
 
-            Marker googleMarker = googleMap.addMarker(
-                    new MarkerOptions().position(
-                            new LatLng(
-                                    marker.getDouble("latitude"),
-                                    marker.getDouble("longitude")
-                            )
-                    ).icon(
-                            BitmapDescriptorFactory.fromBitmap(markerIcon)
-                    )
-            );
+            if (marker.hasKey("icon")) {
+                ReadableMap iconMeta = marker.getMap("icon");
 
-            publicMarkerIds.put(googleMarker.getId(), marker.getString("publicId"));
+                Uri uri = Uri.parse(iconMeta.getString("uri"));
+
+                markerWithCustomIcon(googleMap, latLng, uri, publicId);
+            } else {
+                markerWithDefaultIcon(googleMap, latLng, publicId);
+            }
         }
     }
 
     /**
-     * Loads the map marker from react.
+     * Loads a marker icon via URL and places it on the map at the required position.
      *
-     * @param icon
-     * @return
+     * @param googleMap
+     * @param latLng
+     * @param uri
      */
-    private Bitmap loadMarkerIcon(ReadableMap icon) {
+    private void markerWithCustomIcon(final GoogleMap googleMap, final LatLng latLng, Uri uri, final String publicId) {
         try {
-            URL url = new URL(icon.getString("uri"));
+            Picasso.with(reactContext)
+                    .load(uri)
+                    .into(new Target() {
+                        @Override
+                        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                            MarkerOptions options = new MarkerOptions();
 
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.connect();
+                            options.position(latLng)
+                                    .icon(BitmapDescriptorFactory.fromBitmap(bitmap));
 
-            InputStream input = connection.getInputStream();
-            Bitmap markerIcon = BitmapFactory.decodeStream(input);
+                            Marker marker = googleMap.addMarker(options);
 
-            return markerIcon;
-        } catch (IOException ex) {
-            return null;
+                            publicMarkerIds.put(marker.getId(), publicId);
+                        }
+
+                        @Override
+                        public void onBitmapFailed(Drawable errorDrawable) {
+                            System.out.println("Failed to load bitmap");
+                        }
+
+                        @Override
+                        public void onPrepareLoad(Drawable placeHolderDrawable) {
+                            System.out.println("Preparing to load bitmap");
+                        }
+                    });
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            markerWithDefaultIcon(googleMap,latLng, publicId);
         }
     }
 
-    // Map Properties
+    /**
+     * Places the default red marker on the map at the required position.
+     *
+     * @param googleMap
+     * @param latLng
+     */
+    private void markerWithDefaultIcon(GoogleMap googleMap, LatLng latLng, String publicId)
+    {
+        MarkerOptions options = new MarkerOptions();
+
+        options.position(latLng);
+
+        Marker marker = googleMap.addMarker(options);
+
+        publicMarkerIds.put(marker.getId(), publicId);
+    }
 
     /**
      * Sets the user's location marker, if it has been enabled.
@@ -344,7 +378,7 @@ public class PPTGoogleMapManager extends SimpleViewManager<MapView> implements
      * Controls whether tilt gestures are enabled (default) or disabled.
      *
      * @param map
-     * @param zoomGestures
+     * @param tiltGestures
      */
     @ReactProp(name = "tiltGestures")
     public void setTiltGestures(MapView map, boolean tiltGestures) {
@@ -381,7 +415,7 @@ public class PPTGoogleMapManager extends SimpleViewManager<MapView> implements
     /**
      * Enables or disables the compass.
      *
-     * @param mapView
+     * @param map
      * @param compassButton
      */
     @ReactProp(name = "compassButton")
@@ -403,8 +437,6 @@ public class PPTGoogleMapManager extends SimpleViewManager<MapView> implements
 
         map.getMapAsync(this);
     }
-
-    // Map Events
 
     /**
      * Called repeatedly during any animations or gestures on the map (or once, if the camera is
