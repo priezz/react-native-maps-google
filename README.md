@@ -73,7 +73,7 @@ npm install @pod-point/react-native-maps --save
 Require the UI component in the component you're wanting to display a map in:
 
 ```javascript
-var GoogleMap = require('@pod-point/react-native-maps');
+import { GoogleMap } from '@pod-point/react-native-maps';
 ```
 
 Include the following JSX in your render method:
@@ -200,3 +200,11 @@ An object is returned with details about the event, these typically look like:
     }
 }
 ```
+
+## Contributing
+
+Thank you for considering contributing to this package! The contribution guide can be found here.
+
+## Security Vulnerabilities
+
+If you discover a security vulnerability within this package, please send an e-mail to software@pod-point.com. All security vulnerabilities will be promptly addressed.
