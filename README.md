@@ -3,6 +3,8 @@
 This package provides a React Native compatible, Google Maps UI component which runs on iOS and Android using the same
 JavaScript API.
 
+![screen shot](https://raw.githubusercontent.com/Pod-Point-Open-Source/react-native-maps/master/screen-shot.png "screen shot")
+
 ## Installation
 
 ```bash
