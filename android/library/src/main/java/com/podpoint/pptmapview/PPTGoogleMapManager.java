@@ -181,13 +181,13 @@ public class PPTGoogleMapManager extends SimpleViewManager<MapView> implements
 
         // Add the markers
         addMapMarkers(googleMap);
+        googleMap.setOnMarkerClickListener(this);
 
         // Attach the event handlers
         if (firstMapReady) {
             googleMap.setOnCameraChangeListener(this);
             googleMap.setOnMapClickListener(this);
             googleMap.setOnMapLongClickListener(this);
-            googleMap.setOnMarkerClickListener(this);
             googleMap.setOnMarkerDragListener(this);
             googleMap.setOnMyLocationButtonClickListener(this);
 
