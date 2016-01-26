@@ -6,7 +6,7 @@ JavaScript API.
 ## Installation
 
 ```bash
-npm install @pod-point/react-native-maps --save
+npm install @pod-point-open-source/react-native-maps --save
 ```
 
 ## iOS Setup Guide
@@ -16,11 +16,11 @@ npm install @pod-point/react-native-maps --save
  Native project.
  3. Click on the root of your project in XCode, then select your project's main target. Select *Build Settings* and then
  search for *Framework Search Paths*. Add 
- `$(PROJECT_DIR)/../node_modules/@pod-point/react-native-maps/ios_modules/GoogleMaps-1.10.4/Frameworks` to the framework
+ `$(PROJECT_DIR)/../node_modules/@pod-point-open-source/react-native-maps/ios_modules/GoogleMaps-1.10.4/Frameworks` to the framework
  search path list and make sure it is set to *recursive*.
- 4. Now search for *Header Search Paths*. Add `$(SRCROOT)/../node_modules/@pod-point/react-native-maps` to the header
+ 4. Now search for *Header Search Paths*. Add `$(SRCROOT)/../node_modules/@pod-point-open-source/react-native-maps` to the header
  search path list and make sure that it is also set to *recursive*.
- 5. Open `node_modules/@pod-point/react-native-maps/ios` in Finder and locate the `PPTMapView.xcodeproj` package.
+ 5. Open `node_modules/@pod-point-open-source/react-native-maps/ios` in Finder and locate the `PPTMapView.xcodeproj` package.
  Drag this file into the XCode project navigator. You can keep this in the `Libraries` group along with all the other
  React Native packages.
  6. Expand the `PPTMapView.xcodeproj` tree and select `GoogleMapsApi.plist` - drag this into the group which contains
@@ -45,7 +45,7 @@ npm install @pod-point/react-native-maps --save
  include statement if you're already including other modules).
  3. Add the following line to the end of `settings.gradle`:
  ```
- project(':pptmapview').projectDir = new File(rootProject.projectDir, '../node_modules/@pod-point/react-native-maps/android/library')
+ project(':pptmapview').projectDir = new File(rootProject.projectDir, '../node_modules/@pod-point-open-source/react-native-maps/android/library')
  ```
  4. Open up your `app` module `build.gradle` file and add the following line to the end of your dependancies section:
  ```
@@ -73,7 +73,7 @@ npm install @pod-point/react-native-maps --save
 Require the UI component in the component you're wanting to display a map in:
 
 ```javascript
-import { GoogleMap } from '@pod-point/react-native-maps';
+import { GoogleMap } from '@pod-point-open-source/react-native-maps';
 ```
 
 Include the following JSX in your render method:
