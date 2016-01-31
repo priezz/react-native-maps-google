@@ -90,12 +90,15 @@ class MapView extends Component {
         this._markersForBridge = [];
 
         nextProps.markers.map((marker) => {
-            this._markersForBridge.push({
+            let markerProps = {
                 publicId: marker.id,
                 latitude: marker.latitude,
-                longitude: marker.longitude,
-                icon: resolveAssetSource(marker.icon),
-            });
+                longitude: marker.longitude,  
+            }
+            if (marker.icon)
+                markerProps.icon = resolveAssetSource(marker.icon);
+
+            this._markersForBridge.push(markerProps);
 
             this._markerMeta[marker.id] = marker.meta || {};
         });

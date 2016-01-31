@@ -102,7 +102,9 @@
         
         GMSMarker* mapMarker = [GMSMarker markerWithPosition:CLLocationCoordinate2DMake(latitude, longitude)];
         
-        mapMarker.icon = [self getMarkerImage:marker];
+        if (marker[@"icon"])
+            mapMarker.icon = [self getMarkerImage:marker];
+        
         mapMarker.userData = publicId;
         mapMarker.map = self;
     }
