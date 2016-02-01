@@ -34,6 +34,8 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import java.util.HashMap;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.Map;
 
 public class PPTGoogleMapManager extends SimpleViewManager<MapView> implements
@@ -121,6 +123,11 @@ public class PPTGoogleMapManager extends SimpleViewManager<MapView> implements
     private boolean myLocationButton = true;
 
     /**
+     * Map marker targets to protect from garbage collector
+     */
+    final Set<Target> protectedFromGarbageCollectorTargets = new HashSet<>();
+
+    /**
      * Returns the name of the react module.
      *
      * @return String
@@ -159,6 +166,10 @@ public class PPTGoogleMapManager extends SimpleViewManager<MapView> implements
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
+        // Clear previous map if already there
+        googleMap.clear();
+
         UiSettings settings = googleMap.getUiSettings();
 
         // Set location based flags
@@ -240,31 +251,38 @@ public class PPTGoogleMapManager extends SimpleViewManager<MapView> implements
      */
     private void markerWithCustomIcon(final GoogleMap googleMap, final LatLng latLng, Uri uri, final String publicId) {
         try {
+            Target target = new Target() {
+                @Override
+                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                    MarkerOptions options = new MarkerOptions();
+
+                    options.position(latLng)
+                            .icon(BitmapDescriptorFactory.fromBitmap(bitmap));
+
+                    Marker marker = googleMap.addMarker(options);
+
+                    publicMarkerIds.put(marker.getId(), publicId);
+
+                    protectedFromGarbageCollectorTargets.remove(this);
+                }
+
+                @Override
+                public void onBitmapFailed(Drawable errorDrawable) {
+                    System.out.println("Failed to load bitmap");
+                    protectedFromGarbageCollectorTargets.remove(this);
+                }
+
+                @Override
+                public void onPrepareLoad(Drawable placeHolderDrawable) {
+                    System.out.println("Preparing to load bitmap");
+                }
+            };
+
+            protectedFromGarbageCollectorTargets.add(target);
+
             Picasso.with(reactContext)
                     .load(uri)
-                    .into(new Target() {
-                        @Override
-                        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                            MarkerOptions options = new MarkerOptions();
-
-                            options.position(latLng)
-                                    .icon(BitmapDescriptorFactory.fromBitmap(bitmap));
-
-                            Marker marker = googleMap.addMarker(options);
-
-                            publicMarkerIds.put(marker.getId(), publicId);
-                        }
-
-                        @Override
-                        public void onBitmapFailed(Drawable errorDrawable) {
-                            System.out.println("Failed to load bitmap");
-                        }
-
-                        @Override
-                        public void onPrepareLoad(Drawable placeHolderDrawable) {
-                            System.out.println("Preparing to load bitmap");
-                        }
-                    });
+                    .into(target);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             markerWithDefaultIcon(googleMap,latLng, publicId);
