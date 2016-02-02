@@ -127,7 +127,8 @@ are specified as JSX parameters like so:
 ## Map Markers
 
 Map markers can be set by passing an array of objects which describe them. The markers can be the stock Google variety,
-or you can pass a reference to an image to customise them. It's also possible to add metadata to the marker, simply add
+or you can pass a reference to an image to customise them. The stock Google marker color can be customized by setting
+the `hexColor` property (7 characters, including a `#` prefix). It's also possible to add metadata to the marker, simply add
 a `meta` parameter to the marker object. All markers require a unique identifier string, these should be formatted in a
 similar way to an id tag in HTML. This metadata is returned when an event which affects the marker is fired such
 as `didTapMarker`. Markers are specified using a JSX parameter:
@@ -153,6 +154,12 @@ as `didTapMarker`. Markers are specified using a JSX parameter:
             meta: {
                 foo: 'bar'
             }
+        },
+        {
+            id: 'marker-103',
+            latitude: 56.2031,
+            longitude: -1.7621,
+            hexColor: '#00abff'
         },
     ]}
 />
