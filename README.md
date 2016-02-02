@@ -37,7 +37,8 @@ npm install @pod-point-open-source/react-native-maps --save
  double check that all the libraries and frameworks were automatically added to the *Link Binary With Libraries* phase.
  If they weren't, select all the packages in the Google Maps SDK group (apart from `GoogleMaps.bundle`) and drag them
  into this build phase.
- 10. Hit `Cmd+R` and make sure the app runs!
+ 10. At the bottom of the *Link Binary With Libraries* list, click the `+` button and search for `libPPTMapView.a` (it should be in the `Workspace` folder). Select `libPPTMapView.a` and click the `Add` button. Scroll back up to the top of the list and double check that it was added.
+ 11. Hit `Cmd+R` and make sure the app runs!
  
 ## Android Setup Guide
  
