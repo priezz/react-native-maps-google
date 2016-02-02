@@ -95,6 +95,8 @@
  */
 - (void)setMarkers:(NSArray *)markers
 {
+    [self clear];
+    
     for (NSDictionary* marker in markers) {
         NSString *publicId = marker[@"publicId"];
         CLLocationDegrees latitude = ((NSNumber*)marker[@"latitude"]).doubleValue;
