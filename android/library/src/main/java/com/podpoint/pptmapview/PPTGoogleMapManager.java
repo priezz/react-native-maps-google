@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
@@ -201,8 +202,9 @@ public class PPTGoogleMapManager extends SimpleViewManager<MapView> implements
      * @param googleMap
      */
     private void addMapMarkers(GoogleMap googleMap) {
-        int count = markers.size();
+        googleMap.clear();
 
+        int count = markers.size();
         publicMarkerIds =  new HashMap<>();
 
         for (int i = 0; i < count; i++) {
@@ -225,9 +227,13 @@ public class PPTGoogleMapManager extends SimpleViewManager<MapView> implements
                 Uri uri = Uri.parse(iconMeta.getString("uri"));
 
                 markerWithCustomIcon(googleMap, latLng, uri, publicId);
+
+            } else if(marker.hasKey("hexColor")) {
+                markerWithColoredIcon(googleMap, latLng, publicId, marker.getString("hexColor"));
             } else {
                 markerWithDefaultIcon(googleMap, latLng, publicId);
             }
+
         }
     }
 
@@ -285,6 +291,28 @@ public class PPTGoogleMapManager extends SimpleViewManager<MapView> implements
 
         Marker marker = googleMap.addMarker(options);
 
+        publicMarkerIds.put(marker.getId(), publicId);
+    }
+
+    /**
+     * Places a colored default marker on the map at the required position.
+     *
+     * @param googleMap
+     * @param latLng
+     * @param hexColor
+     */
+    private void markerWithColoredIcon(GoogleMap googleMap, LatLng latLng, String publicId, String hexColor)
+    {
+        MarkerOptions options = new MarkerOptions();
+        options.position(latLng);
+
+        int color = Color.parseColor(hexColor);
+        float[] hsv = new float[3];
+        Color.colorToHSV(color, hsv);
+        float hue = hsv[0];
+        options.icon(BitmapDescriptorFactory.defaultMarker(hue));
+
+        Marker marker = googleMap.addMarker(options);
         publicMarkerIds.put(marker.getId(), publicId);
     }
 
