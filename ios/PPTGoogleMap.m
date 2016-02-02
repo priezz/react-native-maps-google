@@ -104,12 +104,31 @@
         
         GMSMarker* mapMarker = [GMSMarker markerWithPosition:CLLocationCoordinate2DMake(latitude, longitude)];
         
-        if (marker[@"icon"])
+        if (marker[@"icon"]) {
             mapMarker.icon = [self getMarkerImage:marker];
+        } else if (marker[@"hexColor"]) {
+            UIColor *color = [self getMarkerColor:marker];
+            mapMarker.icon = [GMSMarker markerImageWithColor:color];
+        }
         
         mapMarker.userData = publicId;
         mapMarker.map = self;
     }
+}
+
+/**
+ * Get a UIColor from the marker's 'color' string
+ *
+ * @return UIColor
+ */
+- (UIColor *)getMarkerColor:(NSDictionary *)marker
+{
+    NSString *hexString = marker[@"hexColor"];
+    unsigned rgbValue = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:hexString];
+    [scanner setScanLocation:1]; // bypass '#' character
+    [scanner scanHexInt:&rgbValue];
+    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:0.8];
 }
 
 /**

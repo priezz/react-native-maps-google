@@ -94,6 +94,7 @@ class MapView extends Component {
                 publicId: marker.id,
                 latitude: marker.latitude,
                 longitude: marker.longitude,  
+                hexColor: marker.hexColor,  
             }
             if (marker.icon)
                 markerProps.icon = resolveAssetSource(marker.icon);
@@ -181,6 +182,7 @@ MapView.propTypes = {
         latitude: React.PropTypes.number.isRequired,
         longitude: React.PropTypes.number.isRequired,
         icon: React.PropTypes.any,
+        hexColor: React.PropTypes.string,
         meta: React.PropTypes.object
     })),
 
