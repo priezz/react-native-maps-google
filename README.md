@@ -18,7 +18,7 @@ npm install @pod-point-open-source/react-native-maps --save
  Native project.
  3. Click on the root of your project in XCode, then select your project's main target. Select *Build Settings* and then
  search for *Framework Search Paths*. Add 
- `$(PROJECT_DIR)/../node_modules/@pod-point-open-source/react-native-maps/ios_modules/GoogleMaps-1.10.4/Frameworks` to the framework
+ `$(PROJECT_DIR)/../node_modules/@pod-point-open-source/react-native-maps/ios_modules/GoogleMaps-1.11.1/Frameworks` to the framework
  search path list and make sure it is set to *recursive*.
  4. Now search for *Header Search Paths*. Add `$(SRCROOT)/../node_modules/@pod-point-open-source/react-native-maps` to the header
  search path list and make sure that it is also set to *recursive*.
