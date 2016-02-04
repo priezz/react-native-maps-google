@@ -95,8 +95,9 @@ class MapView extends Component {
                 latitude: marker.latitude,
                 longitude: marker.longitude,  
             }
-            if (marker.icon)
+            if (marker.icon) {
                 markerProps.icon = resolveAssetSource(marker.icon);
+            }
 
             this._markersForBridge.push(markerProps);
 
