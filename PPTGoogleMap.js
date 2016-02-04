@@ -90,12 +90,16 @@ class MapView extends Component {
         this._markersForBridge = [];
 
         nextProps.markers.map((marker) => {
-            this._markersForBridge.push({
+            let markerProps = {
                 publicId: marker.id,
                 latitude: marker.latitude,
-                longitude: marker.longitude,
-                icon: resolveAssetSource(marker.icon),
-            });
+                longitude: marker.longitude,  
+                hexColor: marker.hexColor,  
+            }
+            if (marker.icon)
+                markerProps.icon = resolveAssetSource(marker.icon);
+
+            this._markersForBridge.push(markerProps);
 
             this._markerMeta[marker.id] = marker.meta || {};
         });
@@ -178,6 +182,7 @@ MapView.propTypes = {
         latitude: React.PropTypes.number.isRequired,
         longitude: React.PropTypes.number.isRequired,
         icon: React.PropTypes.any,
+        hexColor: React.PropTypes.string,
         meta: React.PropTypes.object
     })),
 
