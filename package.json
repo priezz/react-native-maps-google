@@ -1,7 +1,7 @@
 {
   "name": "@pod-point-open-source/react-native-maps",
   "description": "Google Maps UI component for React Native",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/pod-point-open-source/react-native-maps.git"
