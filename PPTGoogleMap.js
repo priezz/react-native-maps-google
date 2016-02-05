@@ -96,8 +96,9 @@ class MapView extends Component {
                 longitude: marker.longitude,  
                 hexColor: marker.hexColor,  
             }
-            if (marker.icon)
+            if (marker.icon) {
                 markerProps.icon = resolveAssetSource(marker.icon);
+            }
 
             this._markersForBridge.push(markerProps);
 
