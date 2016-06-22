@@ -1,10 +1,10 @@
 {
-  "name": "@pod-point-open-source/react-native-maps",
+  "name": "react-native-maps-google",
   "description": "Google Maps UI component for React Native",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": {
     "type": "git",
-    "url": "git://github.com/pod-point-open-source/react-native-maps.git"
+    "url": "git://github.com/planxyz/react-native-maps-google.git"
   },
   "main": "PPTGoogleMap",
   "scripts": {
@@ -13,17 +13,23 @@
     "preversion, version": "./sdk.sh"
   },
   "keywords": [
+    "planxyz",
+    "plan xyz",
     "google maps",
     "maps",
     "react native",
     "pod point"
   ],
-  "author": "Edward Coleridge Smith <edward.smith@pod-point.com>",
+  "author": "Melvyn Kim <melvyn@plan.xyz> (http://plan.xyz)",
+  "contributors": [
+    "Pod-Point-Open-Source <software@pod-point.com> (https://github.com/Pod-Point-Open-Source/react-native-maps)",
+    "Thuong Tong Dinh <dinhthuong02@gmail.com> (https://github.com/namlongsoft)"
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pod-point-open-source/react-native-maps/issues"
+    "url": "https://github.com/planxyz/react-native-maps-google/issues"
   },
-  "homepage": "https://github.com/pod-point-open-source/react-native-maps#readme",
+  "homepage": "https://github.com/planxyz/react-native-maps-google#readme",
   "peerDependencies": {
     "react-native": ">= 0.14.0"
   }
