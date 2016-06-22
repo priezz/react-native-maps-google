@@ -1,14 +1,20 @@
+# Special Notes 
+
+- Special thanks to [POD Point Open Source](https://github.com/Pod-Point-Open-Source) for initializing this project. 
+- This repository was forked from [react-native-maps:af9809d](https://github.com/Pod-Point-Open-Source/react-native-maps/tree/af9809d67b1e0285d76147a98b6d8770fc2fab3e)
+- This respository works independently from POD Point Open Source.
+
 # React Native Mapping Integration
 
 This package provides a React Native compatible, Google Maps UI component which runs on iOS and Android using the same
 JavaScript API.
 
-![screen shot](https://raw.githubusercontent.com/Pod-Point-Open-Source/react-native-maps/master/screen-shot.png "screen shot")
+![screen shot](https://raw.githubusercontent.com/planxyz/react-native-maps-google/master/screen-shot.png "screen shot")
 
 ## Installation
 
 ```bash
-npm install @pod-point-open-source/react-native-maps --save
+npm install --save react-native-maps-google
 ```
 
 ## iOS Setup Guide
@@ -17,21 +23,21 @@ npm install @pod-point-open-source/react-native-maps --save
  2. Open up your React Native project in XCode, this is the `.xcodeproj` file in the `ios` directory of your React
  Native project.
  3. Click on the root of your project in XCode, then select your project's main target. Select *Build Settings* and then
- search for *Framework Search Paths*. Add 
- `$(PROJECT_DIR)/../node_modules/@pod-point-open-source/react-native-maps/ios_modules/GoogleMaps-1.11.1/Frameworks` to the framework
+ search for *Framework Search Paths*. Add
+ `$(PROJECT_DIR)/../node_modules/react-native-maps-google/ios_modules/GoogleMaps-1.11.1/Frameworks` to the framework
  search path list and make sure it is set to *recursive*.
- 4. Now search for *Header Search Paths*. Add `$(SRCROOT)/../node_modules/@pod-point-open-source/react-native-maps` to the header
+ 4. Now search for *Header Search Paths*. Add `$(SRCROOT)/../node_modules/react-native-maps-google` to the header
  search path list and make sure that it is also set to *recursive*.
- 5. Open `node_modules/@pod-point-open-source/react-native-maps/ios` in Finder and locate the `PPTMapView.xcodeproj` package.
+ 5. Open `node_modules/react-native-maps-google/ios` in Finder and locate the `PPTMapView.xcodeproj` package.
  Drag this file into the XCode project navigator. You can keep this in the `Libraries` group along with all the other
  React Native packages.
  6. Expand the `PPTMapView.xcodeproj` tree and select `GoogleMapsApi.plist` - drag this into the group which contains
  your `AppDelegate.h` and `AppDelegate.m` files; this group is usually named after your app. When prompted ensure that
- *Copy Items if Needed* is deselected when prompted, this will prevent this file from being committed into source 
+ *Copy Items if Needed* is deselected when prompted, this will prevent this file from being committed into source
  control. Open up the file and enter your Google API key into the value column of the row named `API Key`.
- 7. Open up `AppDelegate.m` and add `#import "PPTGoogleMapProvider.h"` at the top of the file. Then add 
+ 7. Open up `AppDelegate.m` and add `#import "PPTGoogleMapProvider.h"` at the top of the file. Then add
  `[PPTGoogleMapProvider provideAPIKey];` somewhere in the `application` method, ideally at the top.
- 8. Select the `Google Maps SDK` group in `PPTMapView.xcodeproj`,  drag these packages  into the `Libraries` group of 
+ 8. Select the `Google Maps SDK` group in `PPTMapView.xcodeproj`,  drag these packages  into the `Libraries` group of
  your React Native project and ensure that *Copy Items if Needed* is deselected when prompted.
  9. Click on the root of your project in XCode, then select your project's main target. Click on *Build Phases* and
  double check that all the libraries and frameworks were automatically added to the *Link Binary With Libraries* phase.
@@ -39,16 +45,16 @@ npm install @pod-point-open-source/react-native-maps --save
  into this build phase.
  10. At the bottom of the *Link Binary With Libraries* list, click the `+` button and search for `libPPTMapView.a` (it should be in the `Workspace` folder). Select `libPPTMapView.a` and click the `Add` button. Scroll back up to the top of the list and double check that it was added.
  11. Hit `Cmd+R` and make sure the app runs!
- 
+
 ## Android Setup Guide
- 
+
  1. Open up your React Native project in Android Studio, this is the `android` directory in your React Native project.
  2. Expand *Gradle Scripts* from within the project tree and open `settings.gradle`. Replace the line in the script
  which states `include ':app'` with `include ':app', ':pptmapview'` (or append `':pptmapview'` to the end of the
  include statement if you're already including other modules).
  3. Add the following line to the end of `settings.gradle`:
  ```
- project(':pptmapview').projectDir = new File(rootProject.projectDir, '../node_modules/@pod-point-open-source/react-native-maps/android/library')
+ project(':pptmapview').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-maps-google/android/library')
  ```
  4. Open up your `app` module `build.gradle` file and add the following line to the end of your dependancies section:
  ```
@@ -58,7 +64,7 @@ npm install @pod-point-open-source/react-native-maps --save
  visible.
  6. Open your projects `MainActivity` class and import the following package:
  ```java
- import com.podpoint.pptmapview.PPTGoogleMapPackage;
+ import xyz.plan.android.pptmapview.PPTGoogleMapPackage;
  ```
  7. Find the line in your main activity class which has the following on it - `.addPackage(new MainReactPackage())`,
  add the following line below:
@@ -76,7 +82,7 @@ npm install @pod-point-open-source/react-native-maps --save
 Require the UI component in the component you're wanting to display a map in:
 
 ```javascript
-import { GoogleMap } from '@pod-point-open-source/react-native-maps';
+import { GoogleMap } from 'react-native-maps-google';
 ```
 
 Include the following JSX in your render method:
@@ -121,9 +127,9 @@ are specified as JSX parameters like so:
  * `compassButton` - Enables or disables the compass.
  * `myLocationButton` - Enables or disables the My Location button.
  * `indoorPicker` - Enables (default) or disables the indoor floor picker.
- * `allowScrollGesturesDuringRotateOrZoom` - Controls whether rotate and zoom gestures can be performed off-center and 
+ * `allowScrollGesturesDuringRotateOrZoom` - Controls whether rotate and zoom gestures can be performed off-center and
    scrolled around (default YES).
-   
+
 ## Map Markers
 
 Map markers can be set by passing an array of objects which describe them. The markers can be the stock Google variety,
@@ -179,10 +185,10 @@ Event listeners can be attached to the map in the form of a callback. These are 
 
 The following events listeners are available:
 
- * `didChangeCameraPosition` - Called repeatedly during any animations or gestures on the map (or once, if the camera 
-    is explicitly set). This may not be called for all intermediate camera positions. It is always called for the final 
+ * `didChangeCameraPosition` - Called repeatedly during any animations or gestures on the map (or once, if the camera
+    is explicitly set). This may not be called for all intermediate camera positions. It is always called for the final
     position of an animation or gesture - _iOS and Android_.
- * `idleAtCameraPosition` - Called when the map becomes idle, after any outstanding gestures or animations have 
+ * `idleAtCameraPosition` - Called when the map becomes idle, after any outstanding gestures or animations have
     completed (or after the camera has been explicitly set) - _iOS Only_.
  * `didTapAtCoordinate` - Called after a tap gesture at a particular coordinate, but only if a marker was not tapped
     - _iOS and Android_.
@@ -194,14 +200,14 @@ The following events listeners are available:
  * `didEndDraggingMarker` - Called after dragging of a marker ended - _iOS and Android_.
  * `didDragMarker` - Called while a marker is dragged - _iOS and Android_.
  * `didTapMyLocationButtonForMapView` - Called when the My Location button is tapped - _iOS and Android_.
- 
+
 An object is returned with details about the event, these typically look like:
 
 ```javascript
 {
     id: 'marker-102',
     name: "didTapMarker",
-    data: { 
+    data: {
         latitude: 21.7342,
         longitude: -5.7350,
         meta: {
@@ -216,5 +222,11 @@ An object is returned with details about the event, these typically look like:
 Thank you for considering contributing to this package! The contribution guide can be found [here](http://www.contribution-guide.org/).
 
 ## Security Vulnerabilities
+
+> To the maintainer of this fork:
+
+If you discover a security vulnerability within this package, please send an e-mail to github@plan.xyz. All security vulnerabilities will be promptly addressed.
+
+> To the original author:
 
 If you discover a security vulnerability within this package, please send an e-mail to software@pod-point.com. All security vulnerabilities will be promptly addressed.

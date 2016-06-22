@@ -1,4 +1,4 @@
-package com.podpoint.pptmapview;
+package xyz.plan.android.pptmapview;
 
 import android.Manifest;
 import android.content.Context;

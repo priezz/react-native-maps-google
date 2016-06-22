@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/ecs/Documents/PP/OpenChargeNative/node_modules/@pod-point/react-native-maps/ios/PPTMapView.xcodeproj">
+      location = "self:/Users/ecs/Documents/PP/OpenChargeNative/node_modules/react-native-maps-google/ios/PPTMapView.xcodeproj">
    </FileRef>
 </Workspace>

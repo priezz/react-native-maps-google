@@ -1,4 +1,4 @@
-package com.podpoint.pptmapview;
+package xyz.plan.android.pptmapview;
 
 import org.junit.Test;
 
