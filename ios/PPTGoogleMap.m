@@ -52,8 +52,11 @@
     // If we set latitude/longitude on UI,
     // zoom value will be `none`. For this case, zoom must be hardcoded.
     zoom = ((NSNumber*)cameraPosition[@"zoom"]).doubleValue;
-
-    if (cameraPosition[@"zoom"]) {
+    if(!zoom) {
+        zoom = 16;
+    }
+    
+    if (!cameraPosition[@"latitude"] || !cameraPosition[@"longitude"]) {
         locationManager = [[CLLocationManager alloc] init];
 
         locationManager.delegate = self;
@@ -61,13 +64,14 @@
         locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 
         [locationManager startUpdatingLocation];
-    } else {                                                                 
+    } else {
+        
         CLLocationDegrees latitude = ((NSNumber*)cameraPosition[@"latitude"]).doubleValue;
         CLLocationDegrees longitude = ((NSNumber*)cameraPosition[@"longitude"]).doubleValue;
 
         GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
                                                                 longitude:longitude
-                                                                     zoom:16];
+                                                                     zoom:zoom];
 
 
         [self setCamera: camera];

@@ -34,6 +34,7 @@ RCT_EXPORT_VIEW_PROPERTY(compassButton, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(myLocationButton, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(indoorPicker, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(allowScrollGesturesDuringRotateOrZoom, BOOL)
+RCT_EXPORT_VIEW_PROPERTY(cardMode, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(markers, NSDictionaryArray)
 
 #pragma mark GMSMapViewDelegate

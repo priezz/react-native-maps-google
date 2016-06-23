@@ -175,7 +175,12 @@ MapView.propTypes = {
    * Controls whether rotate and zoom gestures can be performed off-center and scrolled around (default YES).
    */
   allowScrollGesturesDuringRotateOrZoom: React.PropTypes.bool,
-
+  
+  /**
+   * Controls whether card mode on map
+   */
+  cardMode: React.PropTypes.bool,
+  
   /**
    * An array of markers which will be displayed on the map.
    */
