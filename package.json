@@ -1,7 +1,7 @@
 {
   "name": "react-native-maps-google",
   "description": "Google Maps UI component for React Native",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "repository": {
     "type": "git",
     "url": "git://github.com/planxyz/react-native-maps-google.git"
