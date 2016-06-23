@@ -73,8 +73,14 @@
                                                                 longitude:longitude
                                                                      zoom:zoom];
 
-
-        [self setCamera: camera];
+        [CATransaction begin];
+        [CATransaction setAnimationDuration:1.0];
+        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
+                                                                longitude:longitude
+                                                                     zoom:zoom];
+        [self animateToCameraPosition:camera];
+        [CATransaction commit];
+        //[self setCamera: camera];
     }
 }
 
