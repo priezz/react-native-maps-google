@@ -61,7 +61,7 @@
         locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 
         [locationManager startUpdatingLocation];
-    } else {                                                                 zoom:zoom];
+    } else {                                                                 
         CLLocationDegrees latitude = ((NSNumber*)cameraPosition[@"latitude"]).doubleValue;
         CLLocationDegrees longitude = ((NSNumber*)cameraPosition[@"longitude"]).doubleValue;
 
