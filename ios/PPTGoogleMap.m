@@ -70,7 +70,7 @@
         CLLocationDegrees longitude = ((NSNumber*)cameraPosition[@"longitude"]).doubleValue;
 
         [CATransaction begin];
-        [CATransaction setAnimationDuration:.8];
+        [CATransaction setAnimationDuration:.4];
         GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
                                                                 longitude:longitude
                                                                      zoom:zoom];
