@@ -10,6 +10,7 @@
 		0CAA8FF91BFB74B7005A91B8 /* PPTGoogleMapProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAA8FF81BFB74B7005A91B8 /* PPTGoogleMapProvider.m */; };
 		0CAA913C1BFB8086005A91B8 /* PPTGoogleMapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAA91391BFB8086005A91B8 /* PPTGoogleMapManager.m */; };
 		0CAA913D1BFB8086005A91B8 /* PPTGoogleMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAA913B1BFB8086005A91B8 /* PPTGoogleMap.m */; };
+		55CBFDB81D1CEE430073DAE8 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55CBFCE61D1CEDF70073DAE8 /* GoogleMaps.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,8 +28,6 @@
 /* Begin PBXFileReference section */
 		0CAA8FF71BFB74B7005A91B8 /* PPTGoogleMapProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPTGoogleMapProvider.h; sourceTree = "<group>"; };
 		0CAA8FF81BFB74B7005A91B8 /* PPTGoogleMapProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPTGoogleMapProvider.m; sourceTree = "<group>"; };
-		0CAA90DA1BFB7530005A91B8 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = "../ios_modules/GoogleMaps-1.11.1/Frameworks/GoogleMaps.framework"; sourceTree = "<group>"; };
-		0CAA90DC1BFB7543005A91B8 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../ios_modules/GoogleMaps-1.11.1/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
 		0CAA90DD1BFB7688005A91B8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		0CAA90DF1BFB7693005A91B8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		0CAA90E11BFB769E005A91B8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -48,6 +47,8 @@
 		0CAA913A1BFB8086005A91B8 /* PPTGoogleMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPTGoogleMap.h; sourceTree = "<group>"; };
 		0CAA913B1BFB8086005A91B8 /* PPTGoogleMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPTGoogleMap.m; sourceTree = "<group>"; };
 		134814201AA4EA6300B7C361 /* libPPTMapView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPPTMapView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		55CBFCE61D1CEDF70073DAE8 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = "../ios_modules/GoogleMaps-1.13.2/Frameworks/GoogleMaps.framework"; sourceTree = "<group>"; };
+		55CBFCE81D1CEE030073DAE8 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../ios_modules/GoogleMaps-1.13.2/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55CBFDB81D1CEE430073DAE8 /* GoogleMaps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,10 +66,11 @@
 		0CAA8FFA1BFB7508005A91B8 /* Google Maps SDK */ = {
 			isa = PBXGroup;
 			children = (
+				55CBFCE81D1CEE030073DAE8 /* GoogleMaps.bundle */,
+				55CBFCE61D1CEDF70073DAE8 /* GoogleMaps.framework */,
 				0CAA90F11BFB770E005A91B8 /* libz.1.dylib */,
 				0CAA90EF1BFB76FD005A91B8 /* libicucore.A.dylib */,
 				0CAA90ED1BFB76EB005A91B8 /* libc++.1.dylib */,
-				0CAA90DC1BFB7543005A91B8 /* GoogleMaps.bundle */,
 				0CAA90F51BFB7728005A91B8 /* Accelerate.framework */,
 				0CAA90F31BFB771A005A91B8 /* CoreBluetooth.framework */,
 				0CAA90EB1BFB76D1005A91B8 /* SystemConfiguration.framework */,
@@ -78,7 +81,6 @@
 				0CAA90E11BFB769E005A91B8 /* CoreLocation.framework */,
 				0CAA90DF1BFB7693005A91B8 /* CoreData.framework */,
 				0CAA90DD1BFB7688005A91B8 /* AVFoundation.framework */,
-				0CAA90DA1BFB7530005A91B8 /* GoogleMaps.framework */,
 			);
 			name = "Google Maps SDK";
 			sourceTree = "<group>";
@@ -282,11 +284,15 @@
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../ios_modules/**";
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/../ios_modules/**",
+					"$(PROJECT_DIR)_modules/GoogleMaps-1.13.2/Frameworks",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/../../../react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native/React/**",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
@@ -298,11 +304,15 @@
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../ios_modules/**";
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/../ios_modules/**",
+					"$(PROJECT_DIR)_modules/GoogleMaps-1.13.2/Frameworks",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/../../../react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native/React/**",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";

@@ -69,12 +69,8 @@
         CLLocationDegrees latitude = ((NSNumber*)cameraPosition[@"latitude"]).doubleValue;
         CLLocationDegrees longitude = ((NSNumber*)cameraPosition[@"longitude"]).doubleValue;
 
-        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
-                                                                longitude:longitude
-                                                                     zoom:zoom];
-
         [CATransaction begin];
-        [CATransaction setAnimationDuration:1.0];
+        [CATransaction setAnimationDuration:.8];
         GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
                                                                 longitude:longitude
                                                                      zoom:zoom];
