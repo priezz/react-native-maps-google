@@ -179,7 +179,7 @@ MapView.propTypes = {
   /**
    * Controls whether card mode on map
    */
-  cardMode: React.PropTypes.bool,
+  cameraMove: React.PropTypes.number,
   
   /**
    * An array of markers which will be displayed on the map.
