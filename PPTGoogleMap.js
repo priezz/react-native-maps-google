@@ -180,6 +180,11 @@ MapView.propTypes = {
    * Controls whether card mode on map
    */
   cameraMove: React.PropTypes.number,
+
+  /**
+   * Control whether camera direction moving 
+   */
+  cameraDirection: React.PropTypes.number,
   
   /**
    * An array of markers which will be displayed on the map.

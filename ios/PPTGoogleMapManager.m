@@ -35,6 +35,7 @@ RCT_EXPORT_VIEW_PROPERTY(myLocationButton, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(indoorPicker, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(allowScrollGesturesDuringRotateOrZoom, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(cameraMove, NSNumber)
+RCT_EXPORT_VIEW_PROPERTY(cameraDirection, NSNumber)
 RCT_EXPORT_VIEW_PROPERTY(markers, NSDictionaryArray)
 
 #pragma mark GMSMapViewDelegate

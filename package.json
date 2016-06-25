@@ -30,7 +30,8 @@
     "url": "https://github.com/planxyz/react-native-maps-google/issues"
   },
   "homepage": "https://github.com/planxyz/react-native-maps-google#readme",
-  "peerDependencies": {
-    "react-native": ">= 0.14.0"
+  "dependencies": {
+    "react": "^15.1.0",
+    "react-native": ">= 0.27.0"
   }
 }

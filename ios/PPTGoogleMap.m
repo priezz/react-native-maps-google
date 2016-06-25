@@ -72,11 +72,12 @@
         
         [CATransaction begin];
         [CATransaction setAnimationDuration:.4];
-        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
-                                                                longitude:longitude
-                                                                     zoom:zoom];
+        //GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
+        //                                                        longitude:longitude
+        //                                                             zoom:zoom];
         //[self animateToCameraPosition:camera];
-        [self animateWithCameraUpdate:[GMSCameraUpdate setTarget:GMSGeometryOffset(origin,300,180) zoom:16]];
+        
+        [self animateWithCameraUpdate:[GMSCameraUpdate setTarget:GMSGeometryOffset(origin,self.cameraMove.doubleValue, self.cameraDirection.doubleValue) zoom:zoom]];
         [CATransaction commit];
     }
 }
@@ -106,7 +107,7 @@
 - (void)setMarkers:(NSArray *)markers
 {
     [self clear];
-
+    
     for (NSDictionary* marker in markers) {
         NSString *publicId = marker[@"publicId"];
         CLLocationDegrees latitude = ((NSNumber*)marker[@"latitude"]).doubleValue;
