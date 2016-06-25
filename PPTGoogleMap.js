@@ -87,7 +87,6 @@ class MapView extends Component {
     if (!nextProps.markers) {
       return;
     }
-
     this._markersForBridge = [];
 
     nextProps.markers.map((marker) => {

@@ -9,6 +9,8 @@
     NSMutableDictionary *markerImages;
     CLLocationManager *locationManager;
     float zoom;
+    float _move;
+    float _direction;
 }
 
 /**
@@ -55,7 +57,7 @@
     if(!zoom) {
         zoom = 16;
     }
-    
+
     if (!cameraPosition[@"latitude"] || !cameraPosition[@"longitude"]) {
         locationManager = [[CLLocationManager alloc] init];
 
