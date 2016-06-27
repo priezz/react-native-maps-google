@@ -309,4 +309,17 @@
     }
 }
 
+- (void) moveMarkerUpAndDown:(NSDictionary *)marker direction:(NSNumber *)direction distance:(NSNumber*)distance
+{
+    CLLocationDegrees latitude = ((NSNumber*)marker[@"latitude"]).doubleValue;
+    CLLocationDegrees longitude = ((NSNumber*)marker[@"longitude"]).doubleValue;
+    CLLocationCoordinate2D orginal = CLLocationCoordinate2DMake(latitude, longitude);
+    dispatch_barrier_async(dispatch_get_main_queue(), ^{
+        [CATransaction begin];
+        [CATransaction setAnimationDuration:0.4];
+        [self animateWithCameraUpdate:[GMSCameraUpdate setTarget:GMSGeometryOffset(orginal,[distance floatValue],[direction floatValue]) zoom:16]];
+        [CATransaction commit];
+    });
+}
+
 @end

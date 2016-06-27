@@ -23,4 +23,6 @@
 @property (nonatomic) NSNumber *cameraDirection;
 @property (nonatomic, copy) NSArray *markers;
 
+- (void) moveMarkerUpAndDown:(NSDictionary *)marker direction:(NSNumber *)direction distance:(NSNumber*)distance;
+
 @end

@@ -269,4 +269,5 @@ var PPTGoogleMap = requireNativeComponent('PPTGoogleMap', MapView, {
   }
 });
 
+
 module.exports = MapView;

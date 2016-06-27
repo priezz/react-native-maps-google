@@ -9,6 +9,13 @@
 
 RCT_EXPORT_MODULE()
 
+PPTGoogleMap *map;
+
+RCT_EXPORT_METHOD(moveMarkerUpAndDown:(NSDictionary *)marker direction:(float)direction distance:(float)distance)
+{
+    [map moveMarkerUpAndDown:marker direction:[NSNumber numberWithFloat:direction] distance:[NSNumber numberWithFloat:distance]];
+}
+
 /**
  * Create a new React Native Google Map view and set the view delegate to this class.
  *
@@ -16,7 +23,7 @@ RCT_EXPORT_MODULE()
  */
 - (UIView *)view
 {
-  PPTGoogleMap *map = [[PPTGoogleMap alloc] init];
+  map = [[PPTGoogleMap alloc] init];
   
   map.delegate = self;
   
