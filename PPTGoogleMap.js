@@ -87,7 +87,6 @@ class MapView extends Component {
     if (!nextProps.markers) {
       return;
     }
-
     this._markersForBridge = [];
 
     nextProps.markers.map((marker) => {
@@ -179,7 +178,12 @@ MapView.propTypes = {
   /**
    * Controls whether card mode on map
    */
-  cardMode: React.PropTypes.bool,
+  cameraMove: React.PropTypes.number,
+
+  /**
+   * Control whether camera direction moving 
+   */
+  cameraDirection: React.PropTypes.number,
   
   /**
    * An array of markers which will be displayed on the map.
@@ -264,5 +268,6 @@ var PPTGoogleMap = requireNativeComponent('PPTGoogleMap', MapView, {
     onChange: true
   }
 });
+
 
 module.exports = MapView;

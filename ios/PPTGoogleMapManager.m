@@ -9,6 +9,13 @@
 
 RCT_EXPORT_MODULE()
 
+PPTGoogleMap *map;
+
+RCT_EXPORT_METHOD (moveMarkerUpAndDown:(NSDictionary *)marker toPositionY:(float)valueY  animationSpeed:(float)animationSpeed) 
+{
+    [map moveMarkerUpAndDown:marker toPositionY:[NSNumber numberWithFloat:valueY] animationSpeed:[NSNumber numberWithFloat:animationSpeed]];
+}
+
 /**
  * Create a new React Native Google Map view and set the view delegate to this class.
  *
@@ -16,7 +23,7 @@ RCT_EXPORT_MODULE()
  */
 - (UIView *)view
 {
-  PPTGoogleMap *map = [[PPTGoogleMap alloc] init];
+  map = [[PPTGoogleMap alloc] init];
   
   map.delegate = self;
   
@@ -34,7 +41,8 @@ RCT_EXPORT_VIEW_PROPERTY(compassButton, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(myLocationButton, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(indoorPicker, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(allowScrollGesturesDuringRotateOrZoom, BOOL)
-RCT_EXPORT_VIEW_PROPERTY(cardMode, BOOL)
+RCT_EXPORT_VIEW_PROPERTY(cameraMove, NSNumber)
+RCT_EXPORT_VIEW_PROPERTY(cameraDirection, NSNumber)
 RCT_EXPORT_VIEW_PROPERTY(markers, NSDictionaryArray)
 
 #pragma mark GMSMapViewDelegate

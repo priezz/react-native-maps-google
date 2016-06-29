@@ -1,17 +1,82 @@
 {
-  "name": "react-native-maps-google",
+  "_args": [
+    [
+      {
+        "hosted": {
+          "directUrl": "https://raw.githubusercontent.com/planxyz/react-native-maps-google/develop/package.json",
+          "gitUrl": "git://github.com/planxyz/react-native-maps-google.git#develop",
+          "httpsUrl": "git+https://github.com/planxyz/react-native-maps-google.git#develop",
+          "shortcut": "github:planxyz/react-native-maps-google#develop",
+          "ssh": "git@github.com:planxyz/react-native-maps-google.git#develop",
+          "sshUrl": "git+ssh://git@github.com/planxyz/react-native-maps-google.git#develop",
+          "type": "github"
+        },
+        "name": "react-native-maps-google",
+        "raw": "react-native-maps-google@git://github.com/planxyz/react-native-maps-google.git#develop",
+        "rawSpec": "git://github.com/planxyz/react-native-maps-google.git#develop",
+        "scope": null,
+        "spec": "git://github.com/planxyz/react-native-maps-google.git#develop",
+        "type": "hosted"
+      },
+      "/Volumes/Working/apps/planxyz"
+    ]
+  ],
+  "_from": "git://github.com/planxyz/react-native-maps-google.git#develop",
+  "_id": "react-native-maps-google@1.0.4",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/react-native-maps-google",
+  "_phantomChildren": {},
+  "_requested": {
+    "hosted": {
+      "directUrl": "https://raw.githubusercontent.com/planxyz/react-native-maps-google/develop/package.json",
+      "gitUrl": "git://github.com/planxyz/react-native-maps-google.git#develop",
+      "httpsUrl": "git+https://github.com/planxyz/react-native-maps-google.git#develop",
+      "shortcut": "github:planxyz/react-native-maps-google#develop",
+      "ssh": "git@github.com:planxyz/react-native-maps-google.git#develop",
+      "sshUrl": "git+ssh://git@github.com/planxyz/react-native-maps-google.git#develop",
+      "type": "github"
+    },
+    "name": "react-native-maps-google",
+    "raw": "react-native-maps-google@git://github.com/planxyz/react-native-maps-google.git#develop",
+    "rawSpec": "git://github.com/planxyz/react-native-maps-google.git#develop",
+    "scope": null,
+    "spec": "git://github.com/planxyz/react-native-maps-google.git#develop",
+    "type": "hosted"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git://github.com/planxyz/react-native-maps-google.git#3df40ff632a4efe8b3a17095fe3af6bb8890f558",
+  "_shasum": "8ae728b1b26ef78031795bbfc2920ba7cdaab15d",
+  "_shrinkwrap": null,
+  "_spec": "react-native-maps-google@git://github.com/planxyz/react-native-maps-google.git#develop",
+  "_where": "/Volumes/Working/apps/planxyz",
+  "author": {
+    "email": "melvyn@plan.xyz",
+    "name": "Melvyn Kim",
+    "url": "http://plan.xyz"
+  },
+  "bugs": {
+    "url": "https://github.com/planxyz/react-native-maps-google/issues"
+  },
+  "contributors": [
+    {
+      "email": "software@pod-point.com",
+      "name": "Pod-Point-Open-Source",
+      "url": "https://github.com/Pod-Point-Open-Source/react-native-maps"
+    },
+    {
+      "email": "dinhthuong02@gmail.com",
+      "name": "Thuong Tong Dinh",
+      "url": "https://github.com/namlongsoft"
+    }
+  ],
+  "dependencies": {},
   "description": "Google Maps UI component for React Native",
-  "version": "1.0.4",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/planxyz/react-native-maps-google.git"
-  },
-  "main": "PPTGoogleMap",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "./sdk.sh",
-    "preversion, version": "./sdk.sh"
-  },
+  "devDependencies": {},
+  "gitHead": "3df40ff632a4efe8b3a17095fe3af6bb8890f558",
+  "homepage": "https://github.com/planxyz/react-native-maps-google#readme",
   "keywords": [
     "planxyz",
     "plan xyz",
@@ -20,17 +85,23 @@
     "react native",
     "pod point"
   ],
-  "author": "Melvyn Kim <melvyn@plan.xyz> (http://plan.xyz)",
-  "contributors": [
-    "Pod-Point-Open-Source <software@pod-point.com> (https://github.com/Pod-Point-Open-Source/react-native-maps)",
-    "Thuong Tong Dinh <dinhthuong02@gmail.com> (https://github.com/namlongsoft)"
-  ],
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/planxyz/react-native-maps-google/issues"
-  },
-  "homepage": "https://github.com/planxyz/react-native-maps-google#readme",
+  "main": "PPTGoogleMap",
+  "name": "react-native-maps-google",
+  "optionalDependencies": {},
   "peerDependencies": {
     "react-native": ">= 0.14.0"
-  }
+  },
+  "readme": "# Special Notes \n\n- Special thanks to [POD Point Open Source](https://github.com/Pod-Point-Open-Source) for initializing this project. \n- This repository was forked from [react-native-maps:af9809d](https://github.com/Pod-Point-Open-Source/react-native-maps/tree/af9809d67b1e0285d76147a98b6d8770fc2fab3e)\n- This respository works independently from POD Point Open Source.\n\n# React Native Mapping Integration\n\nThis package provides a React Native compatible, Google Maps UI component which runs on iOS and Android using the same\nJavaScript API.\n\n![screen shot](https://raw.githubusercontent.com/planxyz/react-native-maps-google/master/screen-shot.png \"screen shot\")\n\n## Installation\n\n```bash\nnpm install --save react-native-maps-google\n```\n\n## iOS Setup Guide\n\n 1. Go get yourself a cup of coffee, this could take a while...\n 2. Open up your React Native project in XCode, this is the `.xcodeproj` file in the `ios` directory of your React\n Native project.\n 3. Click on the root of your project in XCode, then select your project's main target. Select *Build Settings* and then\n search for *Framework Search Paths*. Add\n `$(PROJECT_DIR)/../node_modules/react-native-maps-google/ios_modules/GoogleMaps-1.11.1/Frameworks` to the framework\n search path list and make sure it is set to *recursive*.\n 4. Now search for *Header Search Paths*. Add `$(SRCROOT)/../node_modules/react-native-maps-google` to the header\n search path list and make sure that it is also set to *recursive*.\n 5. Open `node_modules/react-native-maps-google/ios` in Finder and locate the `PPTMapView.xcodeproj` package.\n Drag this file into the XCode project navigator. You can keep this in the `Libraries` group along with all the other\n React Native packages.\n 6. Expand the `PPTMapView.xcodeproj` tree and select `GoogleMapsApi.plist` - drag this into the group which contains\n your `AppDelegate.h` and `AppDelegate.m` files; this group is usually named after your app. When prompted ensure that\n *Copy Items if Needed* is deselected when prompted, this will prevent this file from being committed into source\n control. Open up the file and enter your Google API key into the value column of the row named `API Key`.\n 7. Open up `AppDelegate.m` and add `#import \"PPTGoogleMapProvider.h\"` at the top of the file. Then add\n `[PPTGoogleMapProvider provideAPIKey];` somewhere in the `application` method, ideally at the top.\n 8. Select the `Google Maps SDK` group in `PPTMapView.xcodeproj`,  drag these packages  into the `Libraries` group of\n your React Native project and ensure that *Copy Items if Needed* is deselected when prompted.\n 9. Click on the root of your project in XCode, then select your project's main target. Click on *Build Phases* and\n double check that all the libraries and frameworks were automatically added to the *Link Binary With Libraries* phase.\n If they weren't, select all the packages in the Google Maps SDK group (apart from `GoogleMaps.bundle`) and drag them\n into this build phase.\n 10. At the bottom of the *Link Binary With Libraries* list, click the `+` button and search for `libPPTMapView.a` (it should be in the `Workspace` folder). Select `libPPTMapView.a` and click the `Add` button. Scroll back up to the top of the list and double check that it was added.\n 11. Hit `Cmd+R` and make sure the app runs!\n\n## Android Setup Guide\n\n 1. Open up your React Native project in Android Studio, this is the `android` directory in your React Native project.\n 2. Expand *Gradle Scripts* from within the project tree and open `settings.gradle`. Replace the line in the script\n which states `include ':app'` with `include ':app', ':pptmapview'` (or append `':pptmapview'` to the end of the\n include statement if you're already including other modules).\n 3. Add the following line to the end of `settings.gradle`:\n ```\n project(':pptmapview').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-maps-google/android/library')\n ```\n 4. Open up your `app` module `build.gradle` file and add the following line to the end of your dependancies section:\n ```\n compile project(path: ':pptmapview')\n ```\n 5. You should now be prompted to run a Gradle project sync so press *Sync Now* in the gold toolbar that should be\n visible.\n 6. Open your projects `MainActivity` class and import the following package:\n ```java\n import xyz.plan.android.pptmapview.PPTGoogleMapPackage;\n ```\n 7. Find the line in your main activity class which has the following on it - `.addPackage(new MainReactPackage())`,\n add the following line below:\n ```java\n .addPackage(new PPTGoogleMapPackage())\n ```\n 8. Expand the `pptmapview` package in your project explorer and then expand the `manifests` directory. Open up the\n `AndroidManifset.xml` and find the node with the key `com.google.android.geo.API_KEY`. Enter your Google API key\n into the `android:value` property and save the file. This file will be kept out of source control so it is safe to\n store the API key in here.\n 9. Hit `Ctrl+R` and make sure the app runs!\n\n## Creating a new Map\n\nRequire the UI component in the component you're wanting to display a map in:\n\n```javascript\nimport { GoogleMap } from 'react-native-maps-google';\n```\n\nInclude the following JSX in your render method:\n\n```javascript\n<GoogleMap />\n```\n\nYou will need to style the component appropriately so that it is visible, just like any other React\nNative view component.\n\n## Map Options\n\nThere are a number of options for the map view which let you customise its layout and UI options. These\nare specified as JSX parameters like so:\n\n```javascript\n<GoogleMap\n    cameraPosition={{auto: true, zoom: 10}}\n    showsUserLocation={true}\n    scrollGestures={true}\n    zoomGestures={true}\n    tiltGestures={true}\n    rotateGestures={true}\n    consumesGesturesInView={true}\n    compassButton={true}\n    myLocationButton={true}\n    indoorPicker={true}\n    allowScrollGesturesDuringRotateOrZoom={true}\n/>\n```\n\n * `cameraPosition` - The map view camera position. You can set `auto` to true and specify a zoom level\n    or you can pass the latitude, longitude and zoom level to manually position the camera.\n * `showsUserLocation` - If true the app will ask for the user's location and focus on it. Default value is false.\n * `scrollGestures` - Controls whether scroll gestures are enabled (default) or disabled.\n * `zoomGestures` - Controls whether zoom gestures are enabled (default) or disabled.\n * `tiltGestures` - Controls whether tilt gestures are enabled (default) or disabled.\n * `rotateGestures` - Controls whether rotate gestures are enabled (default) or disabled.\n * `consumesGesturesInView` - Controls whether gestures by users are completely consumed by the GMSMapView when gestures\n   are enabled (default YES).\n * `compassButton` - Enables or disables the compass.\n * `myLocationButton` - Enables or disables the My Location button.\n * `indoorPicker` - Enables (default) or disables the indoor floor picker.\n * `allowScrollGesturesDuringRotateOrZoom` - Controls whether rotate and zoom gestures can be performed off-center and\n   scrolled around (default YES).\n\n## Map Markers\n\nMap markers can be set by passing an array of objects which describe them. The markers can be the stock Google variety,\nor you can pass a reference to an image to customise them. The stock Google marker color can be customized by setting\nthe `hexColor` property (7 characters, including a `#` prefix). It's also possible to add metadata to the marker, simply add\na `meta` parameter to the marker object. All markers require a unique identifier string, these should be formatted in a\nsimilar way to an id tag in HTML. This metadata is returned when an event which affects the marker is fired such\nas `didTapMarker`. Markers are specified using a JSX parameter:\n\n```javascript\n<GoogleMap\n    markers={[\n        {\n            id: 'marker-100',\n            latitude: 51.5072,\n            longitude: -0.1275\n        },\n        {\n            id: 'marker-101',\n            latitude: 53.2031,\n            longitude: -1.5621,\n            icon: require('./images/my-custom-marker.png')\n        },\n        {\n            id: 'marker-102',\n            latitude: 21.7342,\n            longitude: -5.7350,\n            meta: {\n                foo: 'bar'\n            }\n        },\n        {\n            id: 'marker-103',\n            latitude: 56.2031,\n            longitude: -1.7621,\n            hexColor: '#00abff'\n        },\n    ]}\n/>\n```\n\n## Map Events\n\nEvent listeners can be attached to the map in the form of a callback. These are specified as a JSX parameter like so:\n\n```javascript\n<GoogleMap\n    didTapMarker:{function(event) {\n        console.log(event.name);\n    }}\n/>\n```\n\nThe following events listeners are available:\n\n * `didChangeCameraPosition` - Called repeatedly during any animations or gestures on the map (or once, if the camera\n    is explicitly set). This may not be called for all intermediate camera positions. It is always called for the final\n    position of an animation or gesture - _iOS and Android_.\n * `idleAtCameraPosition` - Called when the map becomes idle, after any outstanding gestures or animations have\n    completed (or after the camera has been explicitly set) - _iOS Only_.\n * `didTapAtCoordinate` - Called after a tap gesture at a particular coordinate, but only if a marker was not tapped\n    - _iOS and Android_.\n    This is called before deselecting any currently selected marker (the implicit action for tapping on the map).\n * `didLongPressAtCoordinate` - Called after a long-press gesture at a particular coordinate - _iOS and Android_.\n * `didTapMarker` - Called after a marker has been tapped - _iOS and Android_.\n * `didTapOverlay` - Called after an overlay has been tapped - _iOS Only_.\n * `didBeginDraggingMarker` - Called when dragging has been initiated on a marker - _iOS and Android_.\n * `didEndDraggingMarker` - Called after dragging of a marker ended - _iOS and Android_.\n * `didDragMarker` - Called while a marker is dragged - _iOS and Android_.\n * `didTapMyLocationButtonForMapView` - Called when the My Location button is tapped - _iOS and Android_.\n\nAn object is returned with details about the event, these typically look like:\n\n```javascript\n{\n    id: 'marker-102',\n    name: \"didTapMarker\",\n    data: {\n        latitude: 21.7342,\n        longitude: -5.7350,\n        meta: {\n            foo: 'bar'\n        }\n    }\n}\n```\n\n## Contributing\n\nThank you for considering contributing to this package! The contribution guide can be found [here](http://www.contribution-guide.org/).\n\n## Security Vulnerabilities\n\n> To the maintainer of this fork:\n\nIf you discover a security vulnerability within this package, please send an e-mail to github@plan.xyz. All security vulnerabilities will be promptly addressed.\n\n> To the original author:\n\nIf you discover a security vulnerability within this package, please send an e-mail to software@pod-point.com. All security vulnerabilities will be promptly addressed.\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/planxyz/react-native-maps-google.git"
+  },
+  "scripts": {
+    "preinstall": "./sdk.sh",
+    "preversion, version": "./sdk.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.4"
 }

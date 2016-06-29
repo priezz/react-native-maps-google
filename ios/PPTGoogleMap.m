@@ -9,6 +9,8 @@
     NSMutableDictionary *markerImages;
     CLLocationManager *locationManager;
     float zoom;
+    float _move;
+    float _direction;
 }
 
 /**
@@ -55,7 +57,7 @@
     if(!zoom) {
         zoom = 16;
     }
-    
+
     if (!cameraPosition[@"latitude"] || !cameraPosition[@"longitude"]) {
         locationManager = [[CLLocationManager alloc] init];
 
@@ -68,15 +70,17 @@
         
         CLLocationDegrees latitude = ((NSNumber*)cameraPosition[@"latitude"]).doubleValue;
         CLLocationDegrees longitude = ((NSNumber*)cameraPosition[@"longitude"]).doubleValue;
-
+        CLLocationCoordinate2D origin = CLLocationCoordinate2DMake(latitude, longitude);
+        
         [CATransaction begin];
-        [CATransaction setAnimationDuration:.4];
-        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
-                                                                longitude:longitude
-                                                                     zoom:zoom];
-        [self animateToCameraPosition:camera];
+        [CATransaction setAnimationDuration:.3];
+        //GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
+        //                                                        longitude:longitude
+        //                                                             zoom:zoom];
+        //[self animateToCameraPosition:camera];
+        
+        [self animateWithCameraUpdate:[GMSCameraUpdate setTarget:GMSGeometryOffset(origin,self.cameraMove.doubleValue, self.cameraDirection.doubleValue) zoom:zoom]]; //
         [CATransaction commit];
-        //[self setCamera: camera];
     }
 }
 
@@ -105,7 +109,7 @@
 - (void)setMarkers:(NSArray *)markers
 {
     [self clear];
-
+    
     for (NSDictionary* marker in markers) {
         NSString *publicId = marker[@"publicId"];
         CLLocationDegrees latitude = ((NSNumber*)marker[@"latitude"]).doubleValue;
@@ -148,16 +152,17 @@
 - (UIImage *)getMarkerImage:(NSDictionary *)marker
 {
     NSString *markerPath = marker[@"icon"][@"uri"];
-    CGFloat markerScale = ((NSNumber*)marker[@"icon"][@"scale"]).doubleValue;
+//    CGFloat markerScale = ((NSNumber*)marker[@"icon"][@"scale"]).doubleValue;
 
     if (!markerImages[markerPath]) {
-        UIImage *markerImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:markerPath]]];
+//        UIImage *markerImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:markerPath]]];
+        UIImage *markerImage = [UIImage imageNamed:markerPath];
 
-        UIImage *markerScaled = [UIImage imageWithCGImage:[markerImage CGImage]
-                                                    scale:(markerScale)
-                                              orientation:(markerImage.imageOrientation)];
+        /*UIImage *markerScaled = [UIImage imageWithCGImage:[markerImage CGImage]
+                                                    scale:(1)
+                                              orientation:(markerImage.imageOrientation)];*/
 
-        [markerImages setObject:markerScaled forKey:markerPath];
+        [markerImages setObject:markerImage forKey:markerPath];
     }
 
 
@@ -303,6 +308,42 @@
     } else {
         self.settings.allowScrollGesturesDuringRotateOrZoom = NO;
     }
+}
+
+/**
+ * Move camere position up / down
+ *
+ * @return void
+ */
+- (void) moveMarkerUpAndDown:(NSDictionary *)marker toPositionY:(NSNumber*)valueY animationSpeed:(NSNumber*)animationSpeed
+{
+    CLLocationDegrees latitude = ((NSNumber*)marker[@"latitude"]).doubleValue;
+    CLLocationDegrees longitude = ((NSNumber*)marker[@"longitude"]).doubleValue;
+    CLLocationCoordinate2D orginal = CLLocationCoordinate2DMake(latitude, longitude);
+    CGPoint point = self.center;
+    
+    dispatch_barrier_async(dispatch_get_main_queue(), ^{
+        CLLocationCoordinate2D mapCenter = [self.projection coordinateForPoint:point];
+        CLLocationCoordinate2D newCoordinate = [self.projection coordinateForPoint:CGPointMake([UIScreen mainScreen].bounds.size.width / 2, [valueY floatValue])];
+        CLLocation *source = [[CLLocation alloc]initWithLatitude:mapCenter.latitude longitude:mapCenter.longitude];
+        CLLocation *dest = [[CLLocation alloc]initWithLatitude:newCoordinate.latitude longitude:newCoordinate.longitude];
+        
+        CLLocationDistance dist = [source distanceFromLocation:dest];
+        
+        if ([valueY floatValue] < [UIScreen mainScreen].bounds.size.height / 2 )
+        {
+            dist *= -1;
+        }
+        float speed_ = 0;
+        if(animationSpeed) {
+            speed_ = [animationSpeed floatValue];
+        }
+        
+        [CATransaction begin];
+        [CATransaction setAnimationDuration:speed_];
+        [self animateWithCameraUpdate:[GMSCameraUpdate setTarget:GMSGeometryOffset(orginal, dist, 0) zoom:16]];
+        [CATransaction commit];
+    });
 }
 
 @end
