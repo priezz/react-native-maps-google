@@ -23,6 +23,6 @@
 @property (nonatomic) NSNumber *cameraDirection;
 @property (nonatomic, copy) NSArray *markers;
 
-- (void) moveMarkerUpAndDown:(NSDictionary *)marker toPositionY:(NSNumber*)valueY  animationSpeed: (NSNumber*)animationSpeed;
+- (void) moveMarkerUpAndDown:(NSDictionary *)marker toPositionY:(NSNumber*)valueY  animationSpeed:(NSNumber*)animationSpeed;
 
 @end
