@@ -73,7 +73,7 @@
         CLLocationCoordinate2D origin = CLLocationCoordinate2DMake(latitude, longitude);
         
         [CATransaction begin];
-        [CATransaction setAnimationDuration:.4];
+        [CATransaction setAnimationDuration:.3];
         //GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
         //                                                        longitude:longitude
         //                                                             zoom:zoom];
@@ -335,7 +335,7 @@
         }
         
         [CATransaction begin];
-        [CATransaction setAnimationDuration:.3];
+        [CATransaction setAnimationDuration:0];
         [self animateWithCameraUpdate:[GMSCameraUpdate setTarget:GMSGeometryOffset(orginal, dist, 0) zoom:16]];
         [CATransaction commit];
     });
