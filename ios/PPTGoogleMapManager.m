@@ -11,9 +11,9 @@ RCT_EXPORT_MODULE()
 
 PPTGoogleMap *map;
 
-RCT_EXPORT_METHOD (moveMarkerUpAndDown:(NSDictionary *)marker toPositionY:(float)valueY)
+RCT_EXPORT_METHOD (moveMarkerUpAndDown:(NSDictionary *)marker toPositionY:(float)valueY  animationSpeed: (float)animationSpeed) 
 {
-    [map moveMarkerUpAndDown:marker toPositionY:[NSNumber numberWithFloat:valueY]];
+    [map moveMarkerUpAndDown:marker toPositionY:[NSNumber numberWithFloat:valueY] animationSpeed:[NSNumber numberWithFloat:animationSpeed]];
 }
 
 /**
