@@ -314,7 +314,7 @@
  *
  * @return void
  */
-- (void) moveMarkerUpAndDown:(NSDictionary *)marker toPositionY:(NSNumber*)valueY animationSpeed: (NSNumber*)animationSpeed
+- (void) moveMarkerUpAndDown:(NSDictionary *)marker toPositionY:(NSNumber*)valueY animationSpeed:(NSNumber*)animationSpeed
 {
     CLLocationDegrees latitude = ((NSNumber*)marker[@"latitude"]).doubleValue;
     CLLocationDegrees longitude = ((NSNumber*)marker[@"longitude"]).doubleValue;
@@ -333,12 +333,11 @@
         {
             dist *= -1;
         }
-        
         float speed_ = 0;
         if(animationSpeed) {
             speed_ = [animationSpeed floatValue];
         }
-
+        
         [CATransaction begin];
         [CATransaction setAnimationDuration:speed_];
         [self animateWithCameraUpdate:[GMSCameraUpdate setTarget:GMSGeometryOffset(orginal, dist, 0) zoom:16]];
