@@ -333,12 +333,14 @@
         {
             dist *= -1;
         }
-        if(!animationSpeed) {
-            animationSpeed = [NSNumber numberWithFloat:0];
+        
+        float speed_ = 0;
+        if(animationSpeed) {
+            speed_ = [animationSpeed floatValue];
         }
 
         [CATransaction begin];
-        [CATransaction setAnimationDuration:animationSpeed];
+        [CATransaction setAnimationDuration:speed_];
         [self animateWithCameraUpdate:[GMSCameraUpdate setTarget:GMSGeometryOffset(orginal, dist, 0) zoom:16]];
         [CATransaction commit];
     });
