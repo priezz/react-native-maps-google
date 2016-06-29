@@ -152,16 +152,17 @@
 - (UIImage *)getMarkerImage:(NSDictionary *)marker
 {
     NSString *markerPath = marker[@"icon"][@"uri"];
-    CGFloat markerScale = ((NSNumber*)marker[@"icon"][@"scale"]).doubleValue;
+//    CGFloat markerScale = ((NSNumber*)marker[@"icon"][@"scale"]).doubleValue;
 
     if (!markerImages[markerPath]) {
-        UIImage *markerImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:markerPath]]];
+//        UIImage *markerImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:markerPath]]];
+        UIImage *markerImage = [UIImage imageNamed:markerPath];
 
-        UIImage *markerScaled = [UIImage imageWithCGImage:[markerImage CGImage]
-                                                    scale:(markerScale)
-                                              orientation:(markerImage.imageOrientation)];
+        /*UIImage *markerScaled = [UIImage imageWithCGImage:[markerImage CGImage]
+                                                    scale:(1)
+                                              orientation:(markerImage.imageOrientation)];*/
 
-        [markerImages setObject:markerScaled forKey:markerPath];
+        [markerImages setObject:markerImage forKey:markerPath];
     }
 
 
