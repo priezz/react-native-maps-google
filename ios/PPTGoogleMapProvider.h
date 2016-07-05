@@ -8,6 +8,6 @@
  *
  * @return BOOL
  */
-+ (BOOL)provideAPIKey;
++ (BOOL)provideAPIKey:(NSString *)apiKey;
 
 @end

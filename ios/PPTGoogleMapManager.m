@@ -4,6 +4,7 @@
 #import "RCTEventDispatcher.h"
 #import "PPTGoogleMap.h"
 #import "UIView+React.h"
+#import "PPTGoogleMapProvider.h"
 
 @implementation PPTGoogleMapManager
 
@@ -14,6 +15,11 @@ PPTGoogleMap *map;
 RCT_EXPORT_METHOD (moveMarkerUpAndDown:(NSDictionary *)marker toPositionY:(float)valueY  animationSpeed:(float)animationSpeed) 
 {
     [map moveMarkerUpAndDown:marker toPositionY:[NSNumber numberWithFloat:valueY] animationSpeed:[NSNumber numberWithFloat:animationSpeed]];
+}
+
+RCT_EXPORT_METHOD (setApiKey: (NSString *)apiKey)
+{
+    [PPTGoogleMapProvider provideAPIKey:apiKey];
 }
 
 /**
