@@ -82,7 +82,7 @@ npm install --save react-native-maps-google
 Require the UI component in the component you're wanting to display a map in:
 
 ```javascript
-import { GoogleMap } from 'react-native-maps-google';
+import GoogleMap from 'react-native-maps-google';
 ```
 
 Include the following JSX in your render method:
